@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "test.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/mcf/3D_Nets/OpenPCDet/tools/test.py",
+            "cwd": "${workspaceFolder}/tools",
+            "args": [
+                "--cfg_file=./cfgs/kitti_models/LMIINet.yaml",
+                "--ckpt=../checkpoint_epoch_80.pth",
+                "--batch_size=2"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "train.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/mcf/3D_Nets/OpenPCDet/tools/train.py",
+            "args": [
+                "--cfg_file=./cfgs/kitti_models/LMIINet.yaml",
+                "--epochs=30",
+                "--batch_size=2"
+            ],
+            "cwd": "${workspaceFolder}/tools",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
