@@ -17,7 +17,7 @@ LiDAR-based 3D object detection is crucial for perception systems for autonomous
 
 ## Installation
 
-Please refer to [INSTALL.md](docs/INSTALL.md) for the installation of `OpenPCDet`.
+Please refer to [INSTALL.md](docs/INSTALL.md) for the installation of `LMIINet`.
 
 ## Getting Started
 
