@@ -1,6 +1,6 @@
 # PVONet
 
-<p align="center"> <img src='img/PVONet.jpeg' align="center" height="450px"> </p>
+<p align="center"> <img src='docs/LMIINet.jpeg' align="center" height="450px"> </p>
 
 
 ## Abstract
