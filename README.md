@@ -1,6 +1,6 @@
 # LMIINet
 
-<p align="center"> <img src='docs/LMIINet.png' align="center" height="450px"> </p>
+<p align="center"> <img src='docs/LMIINet.png' align="center" height="400px"> </p>
 
 
 ## Abstract
@@ -14,7 +14,7 @@ LiDAR-based 3D object detection is crucial for perception systems for autonomous
 
 ## Installation
 
-Please refer to [INSTALL.md](docs/INSTALL.md) for the installation of `OpenPCDet`.
+Please refer to [INSTALL.md](docs/INSTALL.md) for the installation of `LMIINet`.
 
 ## Getting Started
 
