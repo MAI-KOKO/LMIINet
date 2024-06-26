@@ -12,6 +12,8 @@ LiDAR-based 3D object detection is crucial for perception systems for autonomous
 
 - [Installation](docs/INSTALL.md)
 - [Getting Started](docs/GETTING_STARTED.md)
+- [License](#license)
+- [Acknowledgement](#acknowledgement)
 
 ## Installation
 
@@ -20,6 +22,10 @@ Please refer to [INSTALL.md](docs/INSTALL.md) for the installation of `OpenPCDet
 ## Getting Started
 
 Please refer to [GETTING_STARTED.md](docs/GETTING_STARTED.md) to learn more usage about this project.
+
+## License
+
+`LMIINet` is released under the [Apache 2.0 license](LICENSE).
 
 ## Acknowledgement
 
