@@ -1,6 +1,6 @@
 # LMIINet
 
-<p align="center"> <img src='docs/LMIINet.jpeg' align="center" height="450px"> </p>
+<p align="center"> <img src='docs/LMIINet.png' align="center" height="450px"> </p>
 
 
 ## Abstract
