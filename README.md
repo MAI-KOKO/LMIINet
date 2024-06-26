@@ -1,7 +1,7 @@
 # LMIINet: Long-range and Multi-scale Information Interaction Network for 3D Object Detection
 
 <p align="center">
-  <img src="docs/docs/LMIINet.png" width="95%">
+  <img src="docs/LMIINet.png" width="95%">
 </p>
 
 ## Abstract
