@@ -4,10 +4,10 @@ from ...utils.spconv_utils import replace_feature, spconv
 from .spconv_backbone import post_act_block, SparseBasicBlock
 
 
-class SEDBlock(spconv.SparseModule):
+class SFPBlock(spconv.SparseModule):
 
     def __init__(self, dim, kernel_size, stride, num_SBB, norm_fn, indice_key):
-        super(SEDBlock, self).__init__()
+        super(SFPBlock, self).__init__()
 
         first_block = post_act_block( # 论文中的Down模块
             dim, dim, kernel_size=kernel_size, stride=stride, padding=kernel_size // 2,
@@ -24,7 +24,7 @@ class SEDBlock(spconv.SparseModule):
         return self.blocks(x)
 
 
-class SEDLayer(spconv.SparseModule): # 不改变通道数和尺寸
+class SFPLayer(spconv.SparseModule): # 不改变通道数和尺寸
 
     def __init__(self, dim: int, down_kernel_size: list, down_stride: list, num_SBB: list, norm_fn, indice_key):
         super().__init__()
@@ -35,7 +35,7 @@ class SEDLayer(spconv.SparseModule): # 不改变通道数和尺寸
         self.encoder = nn.ModuleList()
         for idx in range(len(down_stride)):
             self.encoder.append(
-                SEDBlock(dim, down_kernel_size[idx], down_stride[idx], num_SBB[idx], norm_fn, f"{indice_key}_{idx}"))
+                SFPBlock(dim, down_kernel_size[idx], down_stride[idx], num_SBB[idx], norm_fn, f"{indice_key}_{idx}"))
 
         downsample_times = len(down_stride[1:]) # 第一层尺度不变，下采样倍率从第二层开始
         self.decoder = nn.ModuleList()
@@ -89,15 +89,15 @@ class SFPBackbone(nn.Module):
 
         # [21, 800, 704] -> [11, 400, 352]
         self.conv2 = spconv.SparseSequential(
-            SEDLayer(32, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sedlayer2_1'),
-            SEDLayer(32, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sedlayer2_2'),
+            SFPLayer(32, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sfplayer2_1'),
+            SFPLayer(32, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sfplayer2_2'),
             post_act_block(32, 64, 3, norm_fn=norm_fn, stride=2, padding=1, indice_key='spconv2', conv_type='spconv'),
         )
 
         #  [11, 400, 352] -> [11, 200, 176]
         self.conv3 = spconv.SparseSequential(
-            SEDLayer(64, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sedlayer3_1'),
-            SEDLayer(64, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sedlayer3_2'),
+            SFPLayer(64, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sfplayer3_1'),
+            SFPLayer(64, down_kernel_size, down_stride, num_SBB, norm_fn=norm_fn, indice_key='sfplayer3_2'),
             post_act_block(64, dim, 3, norm_fn=norm_fn, stride=(1, 2, 2), padding=1, indice_key='spconv3', conv_type='spconv'),
         )
 
